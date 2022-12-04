@@ -14,22 +14,26 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.inventoryscanner.QRscanner.MainActivity
 import com.example.inventoryscanner.databinding.ActivityLoginBinding
 
 import com.example.inventoryscanner.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
-
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        auth = Firebase.auth
         val username = binding.username
         val password = binding.password
         val login = binding.login
@@ -102,11 +106,36 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                val usernameAuth = username.text.toString()
+                val passwordAuth =  password.text.toString()
+                //loginViewModel.login(usernameAuth, passwordAuth)
+                //^this line is from Android studio login module, idk how to do authentication there so its commented for now
+                performLogin(usernameAuth, passwordAuth)
             }
         }
     }
 
+    private fun performLogin(username: String, password: String) {
+        auth.signInWithEmailAndPassword(username, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val intent= Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    Toast.makeText(baseContext, "Success",
+                        Toast.LENGTH_SHORT).show()
+                    val user = auth.currentUser
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener{
+                Toast.makeText(baseContext,"Authentication failed.${it.localizedMessage}",
+                Toast.LENGTH_SHORT).show()
+            }
+    }
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
