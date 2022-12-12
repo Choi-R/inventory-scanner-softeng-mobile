@@ -7,8 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import com.example.inventoryscanner.QRscanner.MainActivity
+import com.example.inventoryscanner.qrscanner.MainActivity
 import com.example.inventoryscanner.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

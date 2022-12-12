@@ -14,7 +14,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.inventoryscanner.QRscanner.MainActivity
+import com.example.inventoryscanner.qrscanner.MainActivity
 import com.example.inventoryscanner.databinding.ActivityLoginBinding
 
 import com.example.inventoryscanner.R
