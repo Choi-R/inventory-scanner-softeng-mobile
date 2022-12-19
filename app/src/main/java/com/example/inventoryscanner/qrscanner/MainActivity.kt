@@ -1,5 +1,6 @@
 package com.example.inventoryscanner.qrscanner
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventoryscanner.qrscanner.fragments.HomeFragment
@@ -8,9 +9,12 @@ import com.example.inventoryscanner.qrscanner.fragments.ScannerFragment
 import com.example.inventoryscanner.qrscanner.fragments.adapters.ViewPagerAdapter
 import com.example.inventoryscanner.R
 import com.example.inventoryscanner.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var btnInsertData: FloatingActionButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +22,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpTabs()
+
+        btnInsertData = findViewById(R.id.btnInsertData)
+        btnInsertData.setOnClickListener{
+            startActivity(Intent(this, InsertionActivity::class.java))
+        }
     }
     private fun setUpTabs(){
         val adapter = ViewPagerAdapter(supportFragmentManager)

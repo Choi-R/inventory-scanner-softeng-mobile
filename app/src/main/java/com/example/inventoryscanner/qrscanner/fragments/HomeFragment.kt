@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.inventoryscanner.R
+import com.example.inventoryscanner.databinding.ActivityMainBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class HomeFragment : Fragment() {
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(

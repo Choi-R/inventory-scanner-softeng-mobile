@@ -29,4 +29,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/appBarLayout" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnInsertData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add" />
+
 </RelativeLayout>
