@@ -26,6 +26,9 @@
             android:name=".ui.login.RegisterActivity"
             android:exported="false"></activity>
         <activity
+            android:name=".qrscanner.InsertionActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".qrscanner.MainActivity"
             android:exported="true" >
         </activity>
