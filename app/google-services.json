@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "233070627048",
+    "firebase_url": "https://inventory-scanner-a8e6a-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "inventory-scanner-a8e6a",
     "storage_bucket": "inventory-scanner-a8e6a.appspot.com"
   },
