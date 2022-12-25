@@ -24,7 +24,6 @@ class InsertionActivity : AppCompatActivity() {
         btnSaveData = findViewById<Button>(R.id.btnSave)
 
         database = FirebaseDatabase.getInstance("https://inventory-scanner-a8e6a-default-rtdb.europe-west1.firebasedatabase.app").getReference("items")
-        print("otewe create")
         btnSaveData.setOnClickListener{
             saveItemData()
         }
