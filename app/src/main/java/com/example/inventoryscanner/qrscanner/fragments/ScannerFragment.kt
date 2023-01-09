@@ -52,10 +52,12 @@ class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPer
         sm = activity as SendMessage
         btnScan= getView()?.findViewById<Button>(R.id.btnScan)
         btnScan!!.setOnClickListener(){
-            //cameraTask()
-            sm.sendData("unused")
-            val result = "result"
+            cameraTask()
+
+            /*sm.sendData("unused")
+            val result = "-NK7obD6JZ-WXeqry_aN"
             setFragmentResult("requestKey", bundleOf("data" to result))
+            */
         }
     }
     private fun hasCameraAccess():Boolean{
@@ -63,13 +65,14 @@ class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPer
     }
     private fun cameraTask(){
         if(hasCameraAccess()){
-            var qrScanner= IntentIntegrator(this.activity)
+            var qrScanner= IntentIntegrator.forSupportFragment(this)
             qrScanner.setPrompt("Scan a QR Code")
             qrScanner.setCameraId(0)
             qrScanner.setOrientationLocked(true)
             qrScanner.setBeepEnabled(true)
             qrScanner.captureActivity=CaptureActivity::class.java
             qrScanner.initiateScan()
+
         }
         else{
             EasyPermissions.requestPermissions(
@@ -82,19 +85,20 @@ class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPer
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
         var result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data)
         if (result!=null){
             if(result.contents== null){
                 Toast.makeText(this.context, "Result Not Found", Toast.LENGTH_SHORT).show()
-                code!!.setText(result.contents.toString())
+
             }
             else{
                 try {
-                    code!!.setText(result.contents.toString())
+                    sm.sendData("unused")
+                    setFragmentResult("requestKey", bundleOf("data" to result.contents.toString()))
                 }catch (exception:JSONException){
                     Toast.makeText(this.context,exception.localizedMessage, Toast.LENGTH_SHORT).show()
+                    code!!.setText("Item doesnt exist")
                 }
             }
         }
