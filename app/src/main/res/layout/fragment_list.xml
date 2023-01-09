@@ -3,19 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".qrscanner.fragments.HomeFragment">
+    tools:context=".qrscanner.fragments.ListFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/objId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="List"
+            android:layout_centerHorizontal="true"
+            android:text="itemId"
             android:textColor="@color/black"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/objName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/objId"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/objRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/objName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="Room"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+        <TextView
+            android:id="@+id/objInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/objRoom"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:text="Info"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
     </RelativeLayout>
 
 </FrameLayout>
