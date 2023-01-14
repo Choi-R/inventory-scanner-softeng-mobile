@@ -1,8 +1,6 @@
 package com.example.inventoryscanner.qrscanner.fragments
 
-import android.app.Activity
 import android.content.Intent
-import android.hardware.camera2.CameraCaptureSession.CaptureCallback
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,15 +11,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.example.inventoryscanner.R
-import com.example.inventoryscanner.qrscanner.MainActivity
-import com.example.inventoryscanner.qrscanner.SendMessage
-import com.google.rpc.Code
+import com.example.inventoryscanner.qrscanner.ChangeTab
 import com.google.zxing.integration.android.IntentIntegrator
 import com.journeyapps.barcodescanner.CaptureActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONException
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -29,9 +22,8 @@ import pub.devrel.easypermissions.EasyPermissions
 
 class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPermissions.RationaleCallbacks  {
     var btnScan: Button?=null
-    var btnEnterScan: Button?=null
     var code: TextView? = null
-    private lateinit var sm :SendMessage
+    private lateinit var sm :ChangeTab
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,15 +41,10 @@ class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPer
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?){
-        sm = activity as SendMessage
+        sm = activity as ChangeTab
         btnScan= getView()?.findViewById<Button>(R.id.btnScan)
         btnScan!!.setOnClickListener(){
             cameraTask()
-
-            /*sm.sendData("unused")
-            val result = "-NK7obD6JZ-WXeqry_aN"
-            setFragmentResult("requestKey", bundleOf("data" to result))
-            */
         }
     }
     private fun hasCameraAccess():Boolean{
@@ -94,7 +81,7 @@ class ScannerFragment : Fragment(), EasyPermissions.PermissionCallbacks, EasyPer
             }
             else{
                 try {
-                    sm.sendData("unused")
+                    sm.changeTab()
                     setFragmentResult("requestKey", bundleOf("data" to result.contents.toString()))
                 }catch (exception:JSONException){
                     Toast.makeText(this.context,exception.localizedMessage, Toast.LENGTH_SHORT).show()

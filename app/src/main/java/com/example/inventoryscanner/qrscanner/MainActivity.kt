@@ -3,7 +3,6 @@ package com.example.inventoryscanner.qrscanner
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.example.inventoryscanner.qrscanner.fragments.HomeFragment
 import com.example.inventoryscanner.qrscanner.fragments.ListFragment
 import com.example.inventoryscanner.qrscanner.fragments.ScannerFragment
@@ -13,7 +12,7 @@ import com.example.inventoryscanner.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(),SendMessage {
+class MainActivity : AppCompatActivity(),ChangeTab {
     private lateinit var binding: ActivityMainBinding
     private lateinit var btnInsertData: FloatingActionButton
 
@@ -43,12 +42,7 @@ class MainActivity : AppCompatActivity(),SendMessage {
         binding.tabs.getTabAt(2)!!.setIcon(R.drawable.ic_baseline_view_list_24)
     }
 
-    override fun sendData(message: String?) {
-        /*val tag = "android:switcher:"+R.id.viewPager.toString()+":"+1
-        val f = supportFragmentManager.findFragmentByTag(tag) as ListFragment?
-
-        f?.displayReceivedData(message!!)
-        */
+    override fun changeTab() {
         var currentItem = getItem(+1)
         viewPager.currentItem=currentItem
 
